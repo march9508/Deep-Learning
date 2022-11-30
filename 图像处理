@@ -1,1 +1,10 @@
 卡萨帝分解
+import cv2
+cat = cv2.imread('./cat.jpeg')
+dog = cv2.imread('./dog.jpeg')
+new_cat = cv2.resize(cat, (dog.shape[:-1][::-1]))
+# 相当于res = new_cat * 0.4 + dog * 0.6 + 0
+res = cv2.addWeighted(new_cat, 0.4, dog, 0.6, 0)  # 加权重
+cv2.imshow('cat_dog', np.hstack((new_cat, dog, res)))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
